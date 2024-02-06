@@ -1,0 +1,1162 @@
+{
+	"info": {
+		"_postman_id": "53d39000-ff9d-46ba-9633-6b7454a5ac12",
+		"name": "DESA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19561378",
+		"_collection_link": "https://warped-rocket-233646.postman.co/workspace/5cdc515d-7017-473b-8b17-b3283cfb934f/collection/19561378-53d39000-ff9d-46ba-9633-6b7454a5ac12?action=share&source=collection_link&creator=19561378"
+	},
+	"item": [
+		{
+			"name": "Follow",
+			"item": [
+				{
+					"name": "Add Follow (Follow Request)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/follow/add?id_user_followed=104472121187932140776",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"follow",
+								"add"
+							],
+							"query": [
+								{
+									"key": "id_user_followed",
+									"value": "104472121187932140776"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Follow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<canvas id=\"myChart\" height=\"75\"></canvas>",
+									"",
+									"<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> ",
+									"",
+									"<script>",
+									"    var ctx = document.getElementById(\"myChart\");",
+									"",
+									"    var myChart = new Chart(ctx, {",
+									"        type: \"line\",",
+									"        data: {",
+									"            labels: [],",
+									"            datasets: [{",
+									"                data: [],",
+									"                ",
+									"                // Change these colours to customize the chart",
+									"                backgroundColor: \"rgba(75, 192, 192, 0.2)\",",
+									"                borderColor: \"rgba(75, 192, 192, 1)\",",
+									"                borderWidth: 1",
+									"            }]",
+									"        },",
+									"        options: {",
+									"            legend: { display: false },",
+									"            title: {",
+									"                display: true,",
+									"                text: 'User Requested vs State'",
+									"            },",
+									"            scales: {",
+									"                xAxes: [{",
+									"                    display: true,",
+									"                    scaleLabel: {",
+									"                        display: true,",
+									"                        labelString: 'User Requested'",
+									"                    }",
+									"                }],",
+									"                yAxes: [{",
+									"                    display: true,",
+									"                    scaleLabel: {",
+									"                        display: true,",
+									"                        labelString: 'State'",
+									"                    }",
+									"                }]",
+									"            }",
+									"        }",
+									"",
+									"    });",
+									"",
+									"    // Access the data passed to pm.visualizer.set() from the JavaScript",
+									"    // code of the Visualizer template",
+									"    pm.getData(function (err, value) {",
+									"        var userRequestedData = value.response.map(function(item) {",
+									"            return item.UserRequested;",
+									"        });",
+									"        var stateData = value.response.map(function(item) {",
+									"            return item.state;",
+									"        });",
+									"        myChart.data.labels = userRequestedData;",
+									"        myChart.data.datasets[0].data = stateData;",
+									"        myChart.update();",
+									"    });",
+									"",
+									"</script>`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    var res = pm.response.json();",
+									"    ",
+									"    var visualizerData = {",
+									"        // Labels take an array of strings",
+									"        response: res",
+									"    };",
+									"",
+									"    return visualizerData;",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/follows?state=Accepted",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"follows"
+							],
+							"query": [
+								{
+									"key": "state",
+									"value": "Accepted"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Follow (Unfollow)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/follow/delete?id=4952183c-d998-413d-a189-44ea2fc594e2",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"follow",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4952183c-d998-413d-a189-44ea2fc594e2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Follow",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/follow/update/?id=239f6c89-22d6-4d65-9859-58859ed862d2&state=Accepted",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"follow",
+								"update",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "239f6c89-22d6-4d65-9859-58859ed862d2"
+								},
+								{
+									"key": "state",
+									"value": "Accepted"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "UserLogin",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [
+										{
+											"key": "access_type",
+											"value": "offline",
+											"enabled": true,
+											"send_as": "request_url"
+										}
+									],
+									"type": "any"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/v2/auth",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://oauth2.googleapis.com/token",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "770468603527-3sdbqrfcicrabe0ec158cbuuv78qt2cc.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "email openid https://www.googleapis.com/auth/userinfo.profile",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://apimanagedesa.developer.azure-api.net/signin-oauth/code/callback/oauthdesa",
+									"type": "string"
+								},
+								{
+									"key": "refreshRequestParams",
+									"value": [
+										{
+											"key": "authorization",
+											"value": "sqdsd",
+											"enabled": false,
+											"send_as": "request_header"
+										}
+									],
+									"type": "any"
+								},
+								{
+									"key": "refreshTokenUrl",
+									"value": "https://oauth2.googleapis.com/token",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "ya29.a0AfB_byCGGtk1dTtM3Yoz9uXIafl7ZfFMBsGOwsKMfgf6HLUjRwg_edewOmxbIRXu0tWBBUxo5vUd9GqJ645KJxdU3TSuJSzEGBSWa3plDFpEdXVlh_31StTxuxFgDIDKpqA2RjSyqGqJQ_fIuE3c_xgU9O4NUxzw1F0aCgYKAWASARESFQHGX2MiqdI58uiyUKEvzLzc2y6N-Q0170",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "AccessToken",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "refresh_token",
+									"type": "any"
+								},
+								{
+									"key": "expires_in",
+									"value": 3599,
+									"type": "number"
+								},
+								{
+									"key": "token_id",
+									"value": "5cc2e40e-7c3e-4541-bfe7-f45fb961e68a",
+									"type": "string"
+								},
+								{
+									"key": "timestamp",
+									"value": 1706541172829,
+									"type": "number"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								},
+								{
+									"key": "id",
+									"value": "request/c6fb3ddf-60ce-4f19-a41c-78d9babd474e/5cdc515d-7017-473b-8b17-b3283cfb934f",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "csdqsd",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "AccessToken",
+								"value": "ya29.a0AfB_byAwwd080koRRdTpHvpA-HrPk1I8Etk1ZEFUW41K9xdNCAwAOoGoQ7DRG6BaB1X1gWm-3tzqKWug1ksxsHhW-jfRKH1Z-YZvebjlAbjFVj8lDKW8R93ep4TacAJdH3eTcvhQ8q4r937a8MO1SIK5Fc3UHZt1rJnShSbSkwaCgYKAYwSARESFQHGX2MiQTAR_gcr2_1EzC9OI4n4IQ0177",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/users/login",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserRegister",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "ya29.a0AfB_byCGGtk1dTtM3Yoz9uXIafl7ZfFMBsGOwsKMfgf6HLUjRwg_edewOmxbIRXu0tWBBUxo5vUd9GqJ645KJxdU3TSuJSzEGBSWa3plDFpEdXVlh_31StTxuxFgDIDKpqA2RjSyqGqJQ_fIuE3c_xgU9O4NUxzw1F0aCgYKAWASARESFQHGX2MiqdI58uiyUKEvzLzc2y6N-Q0170",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "AccessToken",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "refresh_token",
+									"type": "any"
+								},
+								{
+									"key": "expires_in",
+									"value": 3599,
+									"type": "number"
+								},
+								{
+									"key": "token_id",
+									"value": "5cc2e40e-7c3e-4541-bfe7-f45fb961e68a",
+									"type": "string"
+								},
+								{
+									"key": "timestamp",
+									"value": 1706541172829,
+									"type": "number"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "email openid https://www.googleapis.com/auth/userinfo.profile",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "770468603527-3sdbqrfcicrabe0ec158cbuuv78qt2cc.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://oauth2.googleapis.com/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/v2/auth",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://apimanagedesa.developer.azure-api.net/signin-oauth/code/callback/oauthdesa",
+									"type": "string"
+								},
+								{
+									"key": "id",
+									"value": "request/c6fb3ddf-60ce-4f19-a41c-78d9babd474e/5cdc515d-7017-473b-8b17-b3283cfb934f",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Ocp-Apim-Subscription-Key",
+								"value": "csdqsd",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "AccessToken",
+								"value": "ya29.a0AfB_byAwwd080koRRdTpHvpA-HrPk1I8Etk1ZEFUW41K9xdNCAwAOoGoQ7DRG6BaB1X1gWm-3tzqKWug1ksxsHhW-jfRKH1Z-YZvebjlAbjFVj8lDKW8R93ep4TacAJdH3eTcvhQ8q4r937a8MO1SIK5Fc3UHZt1rJnShSbSkwaCgYKAYwSARESFQHGX2MiQTAR_gcr2_1EzC9OI4n4IQ0177",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_picture",
+									"type": "file",
+									"src": "lk2qveqXc/unnamed.png"
+								},
+								{
+									"key": "pseudo",
+									"value": "Val",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "Yo, moi c'est val",
+									"type": "text"
+								},
+								{
+									"key": "birthdate",
+									"value": "07/09/2002",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/users/signin",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"users",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Control-Allow-Origin",
+								"value": "https://apimanagedesa.azure-api.net",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/users?pseudo=Val",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"users"
+							],
+							"query": [
+								{
+									"key": "pseudo",
+									"value": "Val"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "test1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eebfba2-c137-4900-bc36-fa745bbd72c4",
+									"disabled": true
+								},
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/C:/Users/dimitry.corbet/Videos/Debut/Sans titre 2.mp4",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/users/delete?id=103871464134393883323",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"users",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "103871464134393883323"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "GetPost",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/posts",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "user_pseudo",
+									"value": "test",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": null,
+									"description": "id of post",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPost",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/lepet/Pictures/Screenshots/Capture d'écran 2023-12-15 134733.png",
+									"disabled": true
+								},
+								{
+									"key": "video",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/post/add",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"post",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePost",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "test1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eebfba2-c137-4900-bc36-fa745bbd72c4",
+									"disabled": true
+								},
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/C:/Users/dimitry.corbet/Videos/Debut/Sans titre 2.mp4",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/post/delete?id=d131b598-1afd-4114-b510-20bff38959d8",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"post",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "d131b598-1afd-4114-b510-20bff38959d8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePost",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "test1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eebfba2-c137-4900-bc36-fa745bbd72c4",
+									"disabled": true
+								},
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/C:/Users/lepet/Videos/Captures/PICO PARK 2023-11-08 22-35-46.mp4"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/post/update?id=1c976aa7-3a05-4b7b-b14f-4aa72931b2c4",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"post",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1c976aa7-3a05-4b7b-b14f-4aa72931b2c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Update Comment",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"Insane de rien du tout la banniere\"\r\n}"
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/comment/update?id=4bb5fb39-e805-4e92-ac01-b807cdc83ac3",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"comment",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4bb5fb39-e805-4e92-ac01-b807cdc83ac3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetComment",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/comments?id=4151f03f-49d0-48bb-bb58-a90390ef018d",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4151f03f-49d0-48bb-bb58-a90390ef018d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add  Comment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "AccessToken",
+									"type": "string"
+								},
+								{
+									"key": "refresh_token",
+									"type": "any"
+								},
+								{
+									"key": "expires_in",
+									"value": 3599,
+									"type": "number"
+								},
+								{
+									"key": "token_id",
+									"value": "5cc2e40e-7c3e-4541-bfe7-f45fb961e68a",
+									"type": "string"
+								},
+								{
+									"key": "timestamp",
+									"value": 1706541172829,
+									"type": "number"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "scope",
+									"value": "email openid https://www.googleapis.com/auth/userinfo.profile",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer ",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "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",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "770468603527-3sdbqrfcicrabe0ec158cbuuv78qt2cc.apps.googleusercontent.com",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://oauth2.googleapis.com/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/v2/auth",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://apimanagedesa.developer.azure-api.net/signin-oauth/code/callback/oauthdesa",
+									"type": "string"
+								},
+								{
+									"key": "id",
+									"value": "request/c6fb3ddf-60ce-4f19-a41c-78d9babd474e/5cdc515d-7017-473b-8b17-b3283cfb934f",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "test",
+								"value": "ya29.a0AfB_byBmDCTuRoqUOD593Qmdi1o4m0grrTBLa3qG4PU5rpgrfFbkY1NZoNMWDXG6Aa0HxnfPG3CH5yRNdEd8eMqqUaL2b0xYPUFPABzTXDof6qRU3GxyNwH-CSvS4EQjAgolpujYVN0ALFPe7Zja36Q4QvFXhDq2aykaCgYKAdcSARESFQHGX2Mi0i321apoX8OxAaNMHk5f3Q0170",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\":\"wouahhh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/comment/add?id_post=4151f03f-49d0-48bb-bb58-a90390ef018d",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"comment",
+								"add"
+							],
+							"query": [
+								{
+									"key": "id_post",
+									"value": "4151f03f-49d0-48bb-bb58-a90390ef018d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://apimanagedesa.azure-api.net/APIDesa/comment/delete?id=4bb5fb39-e805-4e92-ac01-b807cdc83ac3",
+							"protocol": "https",
+							"host": [
+								"apimanagedesa",
+								"azure-api",
+								"net"
+							],
+							"path": [
+								"APIDesa",
+								"comment",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4bb5fb39-e805-4e92-ac01-b807cdc83ac3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
